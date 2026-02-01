@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скачать файл</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        .file-info {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4361ee;
+        }
+        
+        .file-info h2 {
+            margin-bottom: 15px;
+            color: #4cc9f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .detail-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6);
+            background: linear-gradient(90deg, #3a0ca3, #4361ee);
+        }
+        
+        .warning {
+            background: rgba(255, 193, 7, 0.15);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .warning i {
+            color: #ffc107;
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .instructions h3 {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        ol {
+            padding-left: 25px;
+            line-height: 1.8;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .download-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-download"></i> Скачать файл</h1>
+            <p class="subtitle">Загруженный APK файл доступен для скачивания</p>
+        </header>
+        
+        <div class="file-info">
+            <h2><i class="fas fa-file-alt"></i> Информация о файле</h2>
+            <p>Название: <strong>my_app_latest.apk</strong></p>
+            <p>Тип: <strong>Android Application Package (APK)</strong></p>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <i class="fas fa-weight-hanging"></i>
+                    <span>Размер: <strong>~350 MB</strong></span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Обновлено: <strong id="updateDate">Загружайте при каждом обновлении</strong></span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-download"></i>
+                    <span>Скачиваний: <strong id="downloadCount">0</strong></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v1.0/my_app_latest.apk" 
+               class="download-btn" id="downloadBtn">
+                <i class="fas fa-download"></i> Скачать APK файл
+            </a>
+            <p style="margin-top: 15px; opacity: 0.8;">(~350 MB, время загрузки зависит от скорости интернета)</p>
+        </div>
+        
+        <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>Важно!</strong> Для установки APK файлов из неизвестных источников на Android необходимо 
+                разрешить установку приложений из неизвестных источников в настройках безопасности.
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-list-ol"></i> Инструкция по обновлению файла:</h3>
+            <ol>
+                <li>Загрузите ваш APK файл в раздел "Releases" вашего репозитория на GitHub</li>
+                <li>Замените ссылку в атрибуте <code>href</code> кнопки скачивания выше</li>
+                <li>Обновите информацию о файле (название, размер, дата)</li>
+                <li>Замените <code>YOUR_USERNAME</code> и <code>YOUR_REPO</code> на свои данные</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>Страница автоматически обновляет счетчик скачиваний | Создано для удобного распространения файлов</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Устанавливаем текущую дату
+        document.getElementById('updateDate').textContent = new Date().toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // Счетчик скачиваний (используем localStorage)
+        let downloadCount = localStorage.getItem('downloadCount') || 0;
+        document.getElementById('downloadCount').textContent = downloadCount;
+        
+        // Увеличиваем счетчик при нажатии на кнопку
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            downloadCount++;
+            localStorage.setItem('downloadCount', downloadCount);
+            document.getElementById('downloadCount').textContent = downloadCount;
+            
+            // Показываем сообщение о начале загрузки
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Загрузка началась...';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 3000);
+        });
+        
+        // Автоматическое обновление счетчика каждые 5 секунд (для мульти-вкладок)
+        setInterval(() => {
+            downloadCount = localStorage.getItem('downloadCount') || 0;
+            document.getElementById('downloadCount').textContent = downloadCount;
+        }, 5000);
+    </script>
+</body>
+</html>
